@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import App from '../../hungry-vue/src/App.vue'
-import router from '../../hungry-vue/src/router'
+import App from './App.vue'
+import router from './router'
 //axios
 import axios from 'axios'
 import VueAxios from 'vue-axios'
