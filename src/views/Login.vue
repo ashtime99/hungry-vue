@@ -1,6 +1,13 @@
 <template>
   <div>
-    <el-form :rules="rules" ref="loginForm" :model="loginForm" class="loginContainer">
+    <el-form :rules="rules"
+             v-loading="loading"
+             element-loading-text="正在登录中..."
+             element-loading-spinner="el-icon-loading"
+             element-loading-background="rgba(0, 0, 0, 0.8)"
+             ref="loginForm"
+             :model="loginForm"
+             class="loginContainer">
       <h3 class="loginTitle">hungry后台系统登录</h3>
       <el-form-item prop="username">
         <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" auto-complete="off"></el-input>
@@ -26,6 +33,7 @@ export default {
   name: 'Login',
   data() {
     return {
+      loading:false,
       checked: true,
       captchaUrl: '/captcha?time=' + new Date(),
       loginForm: {
@@ -59,9 +67,17 @@ export default {
     submitLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
+          this.loading=true;
           console.log(this.loginForm);
-          postRequest('/login', this.loginForm).then(resp => {
-            console.log(resp);
+          this.postRequest('/login', this.loginForm).then(resp => {
+            if (resp){
+              this.loading=false;
+              //存储用户token
+              const tokenStr=resp.obj.tokenHead+resp.obj.token;
+              window.sessionStorage.setItem('tokenStr',tokenStr)
+              //跳转首页
+              this.$router.replace('/home')
+            }
           })
         } else {
           console.log('error submit!!');

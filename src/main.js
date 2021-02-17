@@ -7,12 +7,21 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.config.productionTip=false
+import {postRequest} from "./utils/api";
+import {getRequest} from "./utils/api";
+import {putRequest} from "./utils/api";
+import {deleteRequest} from "./utils/api";
 
-Vue.use(VueAxios, axios)
+Vue.config.productionTip=false;
 
+Vue.use(VueAxios, axios);
 
-Vue.use(ElementUI)
+Vue.use(ElementUI);
+//插件形式使用请求
+Vue.prototype.postRequest=postRequest;
+Vue.prototype.getRequest=getRequest;
+Vue.prototype.putRequest=putRequest;
+Vue.prototype.deleteRequest=deleteRequest;
 
 new Vue({
   el: '#app',
