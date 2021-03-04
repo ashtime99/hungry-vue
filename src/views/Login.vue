@@ -37,7 +37,7 @@ export default {
       checked: true,
       captchaUrl: '/captcha?time=' + new Date(),
       loginForm: {
-        username: 'admin',
+        username: 'root',
         password: '123',
         code: ''
       },
@@ -76,7 +76,10 @@ export default {
               const tokenStr=resp.obj.tokenHead+resp.obj.token;
               window.sessionStorage.setItem('tokenStr',tokenStr)
               //跳转首页
-              this.$router.replace('/home')
+              //this.$router.replace('/home')
+              let path=this.$route.query.redirect;
+              console.log(path);
+              this.$router.replace((path=='/'||path==undefined)?'/home':path);
             }
           })
         } else {

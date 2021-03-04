@@ -12,7 +12,7 @@ axios.interceptors.request.use(config=>{
     console.log(error);
 })
 
-//响应拦截器
+//响应拦截器-统一处理消息提示
 axios.interceptors.response.use(success=>{
 	//业务逻辑错误
     if (success.status&&success.status==200){
@@ -44,11 +44,12 @@ axios.interceptors.response.use(success=>{
     return;
 })
 
+// 预备前置路径
 let base='';
 
 //传送json格式的post请求
 export const postRequest=(url,params)=>{
-    console.log(params);
+    console.log('post-url:'+url+' post-params:'+params);
     return axios({
         method:'post',
         url: `${base}${url}`,
@@ -58,7 +59,7 @@ export const postRequest=(url,params)=>{
 
 //传送json格式的put请求
 export const putRequest=(url,params)=>{
-    console.log(params);
+    console.log('put-url:'+url+' put-params:'+params);
     return axios({
         method:'put',
         url: `${base}${url}`,
@@ -68,7 +69,7 @@ export const putRequest=(url,params)=>{
 
 //传送json格式的get请求
 export const getRequest=(url,params)=>{
-    console.log(params);
+    console.log('get-url:'+url+' get-params:'+params);
     return axios({
         method:'get',
         url: `${base}${url}`,
@@ -78,7 +79,7 @@ export const getRequest=(url,params)=>{
 
 //传送json格式的delete请求
 export const deleteRequest=(url,params)=>{
-    console.log(params);
+    console.log('delete-url:'+url+' delete-params:'+params);
     return axios({
         method:'delete',
         url: `${base}${url}`,
