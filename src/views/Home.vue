@@ -40,7 +40,7 @@
         <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
           欢迎进入系统
         </div>
-        <router-view/>
+        <router-view class="homeRouterView"/>
       </el-main>
     </el-container>
   </el-container>
@@ -116,6 +116,9 @@ export default {
   width:40px;
   height: 40px;
   border-radius: 20px;
+}
+.homeRouterView{
+  margin-top: 10px;
 }
 
 </style>
