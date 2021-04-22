@@ -1,11 +1,11 @@
 <template>
-  <div>配送员资料</div>
+    
 </template>
 
 <script>
-export default {
-name: "EmpDr"
-}
+    export default {
+        name: "Sweets"
+    }
 </script>
 
 <style scoped>

@@ -52,7 +52,7 @@ router.beforeEach((to,from,next)=>{
     }
     next();
   }else {
-    if (to.path=='/'){
+    if (to.path=='/'||to.path=='/user/'){
       next();
     }else{
       next('/?redirect='+to.path);

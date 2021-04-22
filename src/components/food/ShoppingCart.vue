@@ -1,11 +1,11 @@
 <template>
-  <div>管理员管理</div>
+    
 </template>
 
 <script>
-export default {
-name: "SysAdmin"
-}
+    export default {
+        name: "ShoppingCart"
+    }
 </script>
 
 <style scoped>

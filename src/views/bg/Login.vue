@@ -8,7 +8,10 @@
              ref="loginForm"
              :model="loginForm"
              class="loginContainer">
-      <h3 class="loginTitle">hungry后台系统登录</h3>
+      <div style="display: flex;flex-direction: column;align-items: center;justify-content: center">
+        <img src="../../../public/hungry.png" style="height:40px;"/>
+        <h3 class="loginTitle">hungry后台系统登录</h3>
+      </div>
       <el-form-item prop="username">
         <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" auto-complete="off"></el-input>
       </el-form-item>
@@ -72,8 +75,9 @@ export default {
           this.postRequest('/login', this.loginForm).then(resp => {
             if (resp){
               this.loading=false;
+              console.log(resp);
               //存储用户token
-              const tokenStr=resp.obj.tokenHead+resp.obj.token;
+              const tokenStr=resp.data.tokenHead+resp.data.token;
               window.sessionStorage.setItem('tokenStr',tokenStr)
               //跳转首页
               //this.$router.replace('/home')

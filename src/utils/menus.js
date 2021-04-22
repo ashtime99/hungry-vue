@@ -24,6 +24,24 @@ export  const initMenu=(router,store)=>{
     })
 }
 
+export  const initUserMenu=(router,store)=>{
+    if (store.state.routes.length>0){
+        return;
+    }
+    getRequest('/system/cfg/user/menu').then(data=>{
+        if (data){
+            //格式化Router
+            let fmtRoutes=formatRouters(data);
+            console.log(fmtRoutes);
+            //添加到Router
+            router.addRoutes(fmtRoutes);
+            //将数据存入Vuex
+            store.commit('initUserRoutes',fmtRoutes);
+
+        }
+    })
+}
+
 export const formatRouters=(routes)=>{
     let fmtRoutes=[];
     routes.forEach(router=>{
@@ -46,15 +64,15 @@ export const formatRouters=(routes)=>{
             component(resolve){
                 // 判断组件以什么开头，到对应的目录去找
                 if (menuComponent.startsWith('Home')){
-                    require(['../views/'+menuComponent+'.vue'],resolve);
-                }else if (menuComponent.startsWith('Emp')){
-                    require(['../views/emp/'+menuComponent+'.vue'],resolve);
+                    require(['../views/bg/'+menuComponent+'.vue'],resolve);
+                }else if (menuComponent.startsWith('Food')){
+                    require(['../views/bg/food/'+menuComponent+'.vue'],resolve);
                 }else if (menuComponent.startsWith('Ord')){
-                    require(['../views/ord/'+menuComponent+'.vue'],resolve);
+                    require(['../views/bg/ord/'+menuComponent+'.vue'],resolve);
                 }else if (menuComponent.startsWith('Sta')){
-                    require(['../views/sta/'+menuComponent+'.vue'],resolve);
+                    require(['../views/bg/sta/'+menuComponent+'.vue'],resolve);
                 }else if (menuComponent.startsWith('Sys')){
-                    require(['../views/sys/'+menuComponent+'.vue'],resolve);
+                    require(['../views/bg/sys/'+menuComponent+'.vue'],resolve);
                 }
             }
         }

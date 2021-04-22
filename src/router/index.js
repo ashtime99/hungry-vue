@@ -3,8 +3,7 @@ import Vue from 'vue';
 //引入vue-router
 import VueRouter from 'vue-router';
 
-import Login  from '../views/Login.vue';
-import Home  from '../views/Home.vue';
+import Login  from '../views/bg/Login.vue';
 
 //第三方库需要use一下才能用
 Vue.use(VueRouter)
